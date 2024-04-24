@@ -34,6 +34,7 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    // babel에서 webpack commonJS로 읽고 require()를 dynamic import로 수정하라고 할 때 해결 방법
     transpile: [({ isLegacy }) => isLegacy && 'axios']
   },
 }
