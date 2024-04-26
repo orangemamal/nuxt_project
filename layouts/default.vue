@@ -4,6 +4,7 @@
     <nuxt-link to="/">시작</nuxt-link>
     <nuxt-link to="/login">로그인</nuxt-link>
     <nuxt-link to="/main">메인</nuxt-link>
+    <nuxt />
   </div>
 </template>
 

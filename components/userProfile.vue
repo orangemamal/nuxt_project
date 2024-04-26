@@ -10,23 +10,27 @@
 </template>
 
 <script>
-import axios from 'axios'
 export default {
-  // 아래 속성을 'false'로 바꾸면 서버에서 화면을 구성할 때 `fetch` 속성의 로직이 실행되지 않습니다.
   data() {
     return {
       user: {},
     }
   },
   async fetch() {
-    const res = await axios.get('https://jsonplaceholder.typicode.com/users/1');
+    const token = 'YOUR_ACCESS_TOKEN';
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    const res = await this.$axios.get('https://jsonplaceholder.typicode.com/users/1', config);
     this.user = res.data;
+    console.log(this.user);
   },
   methods: {
     fetchUser() {
-      // fetch 속성의 로직을 실행합니다.
-      this.$fetch();
-    },
+      this.fetch();
+    }
   },
   fetchOnServer: false
 }

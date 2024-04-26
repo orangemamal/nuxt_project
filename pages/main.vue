@@ -6,11 +6,10 @@
 </template>
 
 <script>
-import UserProfile from "../components/userProfile.vue";
+import UserProfile from "@/components/userProfile.vue";
 
 export default {
   components: {UserProfile},
-  layout: "blog",
 }
 </script>
 

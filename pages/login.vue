@@ -1,7 +1,7 @@
 <template>
   <div>
     <p>{{ $store.state.user }}</p>
-    <button @click="displayUser"></button>
+    <button @click="displayUser">show user</button>
   </div>
 </template>
 

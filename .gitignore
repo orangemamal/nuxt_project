@@ -57,7 +57,7 @@ typings/
 .yarn-integrity
 
 # dotenv environment variables file
-.env
+.env.development
 
 # parcel-bundler cache (https://parceljs.org/)
 .cache
@@ -88,3 +88,8 @@ sw.*
 
 # Vim swap files
 *.swp
+
+# Ignore .env files
+.env.local
+.env.development
+.env.production

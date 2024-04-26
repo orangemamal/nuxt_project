@@ -1,3 +1,4 @@
+
 export const state = () => ({
   user: {}
 })
@@ -10,7 +11,7 @@ export const mutations = {
 
 export const actions = {
   async fetchUser(context) {
-    const response = await axios.get('users/1');
+    const response = await this.$axios.get('https://jsonplaceholder.typicode.com/users/1');
     context.commit('setUser', response.data);
   }
 }
