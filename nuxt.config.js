@@ -43,7 +43,7 @@ export default {
   css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: ["@/plugins/api"],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -58,6 +58,7 @@ export default {
   modules: [
     // nuxtjs용 axios 모듈 추가
     "@nuxtjs/axios",
+    '@nuxtjs/proxy',
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
@@ -73,21 +74,27 @@ export default {
   // }
 
   axios: {
+    baseURL: process.env.API_URL,
+    browserBaseURL: process.env.API_URL,
     proxy: true,
-    retry: {
-      retries: 1, // 최대 재전송 횟수 4회
-      // shouldResetTimeout: true, // 재전송 간 타임아웃을 리셋하기
-      // retryDelay: (retry) => {
-      //   return retry * 100; // 재전송 횟수 * 0.1초만큼 재전송 시작 시간을 지연시키기
-      // },
-      // retryCondition: error => error.response.status === 429, // 서버 혼잡이 일어났을 경우에만 재전송하기
-    },
   },
+
+  // publicRuntimeConfig: {
+  //   axios: {
+  //     baseURL: process.env.API_URL,
+  //   },
+  // },
+  //
+  // privateRuntimeConfig: {
+  //   axios: {
+  //     baseURL: process.env.API_URL,
+  //   },
+  // },
+
   // axios.proxy: true 설정 필요
   proxy: {
-    "/api/v1": {
+    "/api/": {
       target: process.env.API_URL || 'http://localhost:3000',
-      pathRewrite: { '^/api/v1': '' },
     },
   }
 }

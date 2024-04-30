@@ -1,11 +1,8 @@
 <template>
   <div>
     <article>
-      <p v-if="$fetchState.pending">사용자 API 호출 중</p>
-      <p v-else-if="$fetchState.error">에러가 발생했습니다</p>
-      <div v-else>{{ user }}</div>
+      <div>{{ user }}</div>
     </article>
-    <button @click="fetchUser">다시 호출하기</button>
   </div>
 </template>
 
@@ -13,25 +10,18 @@
 export default {
   data() {
     return {
-      user: {},
+      user: [],
+      error: null,
     }
   },
-  async fetch() {
-    const token = 'YOUR_ACCESS_TOKEN';
-    const config = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
-    const res = await this.$axios.get('https://jsonplaceholder.typicode.com/users/1', config);
-    this.user = res.data;
-    console.log(this.user);
-  },
-  methods: {
-    fetchUser() {
-      this.fetch();
+  async mounted() {
+    try {
+      // 인스턴스 주입
+      const response = await this.$api.get(`users/1`);
+      this.user = response.data;
+    } catch (error) {
+      console.error('Error fetching data:', error);
     }
   },
-  fetchOnServer: false
 }
 </script>
